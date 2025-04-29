@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import clsx from "clsx";
 
 const SlantedTab = ({ onClick, label, index, isActive }) => {
   return (

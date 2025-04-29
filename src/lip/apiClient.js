@@ -4,26 +4,43 @@ import { BASE_URL } from "../constants/urlConstant";
 const apiClient = axios.create({ baseURL: BASE_URL });
 
 const dummyJSON = {
-  hostName: "10-195-144-216.etcd.kube-system.svc.cluster.local",
-  version: "1",
-  kpis: {
-    cpu: {
-      utilization: "9.48",
-      units: "percent",
-    },
-    memory: {
-      utilization: "69.51",
-      units: "percent",
-    },
-    "network tx_rate": {
-      utilization: "1483.26",
-      units: "kbps",
-    },
-    "network rx_rate": {
-      utilization: "1821.24",
-      units: "kbps",
-    },
+  wlcVersion: "17.15.3",
+  catalystVersion: "3.1.3",
+  timePeriod: "Current - 1d-5d-1m",
+  networkHealth: "96% healthy",
+  wirelessClients: {
+    lateast: "38%",
+    health: "Healthy",
+    total: "179,990",
+    active: "179,990",
+    inActive: "0",
+    new: 0,
   },
+  infoCards: [
+    {
+      label: "# Radio Crash",
+      value: "5",
+      valueColor: "green",
+      health: "Below Average",
+    },
+    {
+      label: "Roaming latency",
+      value: "10ms",
+      valueColor: "green",
+      health: "Below Average",
+    },
+    {
+      label: "# Clients",
+      value: "72",
+      health: "Average",
+    },
+    {
+      label: "# Concurrent Clients",
+      value: "12",
+
+      health: "Below Threshold",
+    },
+  ],
 };
 
 apiClient.interceptors.response.use(
