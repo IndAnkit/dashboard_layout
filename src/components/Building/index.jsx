@@ -2,19 +2,25 @@ import apiClient from "@/lip/apiClient";
 import React, { useEffect, useState } from "react";
 
 const Building = ({ networkId }) => {
-  const [data, setData] = useState(null);
+  const [{ data, isLoading }, setData] = useState({
+    isLoading: true,
+    data: {},
+  });
   useEffect(() => {
+    setData({ isLoading: true });
     apiClient
       .post("", { networkId })
       .then((_data) => {
-        console.log("_data", _data);
-        setData(_data);
+        setData({ data: _data });
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setData((prev) => ({ ...prev, isLoading: false }));
       });
   }, [networkId]);
-  if (!data) {
+  if (isLoading) {
     return <div>Loader...</div>;
   }
   const {
