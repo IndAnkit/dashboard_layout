@@ -1,25 +1,5 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-const BuildingComponent = () => <div>Building Content</div>;
-const FloorComponent = () => <div>Floor Content</div>;
-const APComponent = () => <div>AP Layer Content</div>;
-const tabs = {
-  building: {
-    id: "building",
-    label: "Building – 23",
-    RenderComponent: BuildingComponent, // replace with actual component
-  },
-  floor: {
-    id: "floor",
-    label: "Floor Layer",
-    RenderComponent: FloorComponent, // replace with actual component
-  },
-  ap: {
-    id: "ap",
-    label: "AP Layer",
-    RenderComponent: APComponent, // replace with actual component
-  },
-};
 
 const SlantedTab = ({ onClick, label, index, isActive }) => {
   return (
@@ -38,7 +18,7 @@ const SlantedTab = ({ onClick, label, index, isActive }) => {
   );
 };
 
-const TabBar = () => {
+const TabBar = ({ tabs, ...restProps }) => {
   const [activeTab, setActiveTab] = useState("building");
   const Component = tabs[activeTab].RenderComponent;
   return (
@@ -46,6 +26,7 @@ const TabBar = () => {
       <div className="flex bg-gray-100 p-2 overflow-x-auto">
         {Object.values(tabs).map((tab, idx) => (
           <SlantedTab
+            key={tab.id}
             label={tab.label}
             index={idx + 1}
             isActive={activeTab === tab.id}
@@ -53,7 +34,7 @@ const TabBar = () => {
           />
         ))}
       </div>
-      <Component />
+      <Component {...restProps} />
     </div>
   );
 };
