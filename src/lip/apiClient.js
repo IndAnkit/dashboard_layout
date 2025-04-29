@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "../constants/urlConstant";
 
-const apiClient = axios.create({ url: BASE_URL });
+const apiClient = axios.create({ baseURL: BASE_URL });
 
 const dummyJSON = {
   hostName: "10-195-144-216.etcd.kube-system.svc.cluster.local",
@@ -27,11 +27,11 @@ const dummyJSON = {
 };
 
 apiClient.interceptors.response.use(
-  (_) => {
-    return Promise.resolve(dummyJSON);
+  (response) => {
+    return dummyJSON;
   },
-  (_) => {
-    return Promise.resolve(dummyJSON);
+  (error) => {
+    return dummyJSON;
   }
 );
 export default apiClient;

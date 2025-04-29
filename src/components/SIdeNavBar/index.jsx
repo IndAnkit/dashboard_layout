@@ -1,4 +1,4 @@
-import { Center, Stack, Tooltip } from "@mantine/core";
+import { cn } from "@/lib/utils";
 import {
   IconCalendarStats,
   IconDeviceDesktopAnalytics,
@@ -6,32 +6,38 @@ import {
   IconHome2,
 } from "@tabler/icons-react";
 // import { MantineLogo } from "@mantinex/mantine-logo";
-import { NavLink, useNavigate } from "react-router-dom";
-import classes from "./sideNavBar.module.css";
-
+import { NavLink, useNavigate, matchPath, useLocation } from "react-router-dom";
+import classess from "./sideNavBar.module.css";
 function NavbarLink({ icon: Icon, path, label, active, onClick }) {
+  const location = useLocation();
+  const isActive = location.pathname === path;
+  console.log(isActive);
   return (
-    <Tooltip
-      label={label}
-      position="right"
-      transitionProps={{ duration: 0 }}
+    <NavLink
+      to={path}
+      onClick={onClick}
+      className={
+        ({ isActive }) =>
+          cn(
+            "w-full flex flex-col items-center px-2 py-2",
+            isActive ? `relative bg-blue-500` : ""
+          )
+        // isActive ? `${classes.link_active}` : classes.link
+      }
+      // className={classes.link}
+      // data-active={active || undefined}
     >
-      <NavLink
-        to={path}
-        onClick={onClick}
-        className={({ isActive }) =>
-          isActive ? `${classes.link_active}` : classes.link
-        }
-        // className={classes.link}
-        // data-active={active || undefined}
-      >
-        <Icon
-          size={20}
-          stroke={1.5}
-        />
-        <div>{label}</div>
-      </NavLink>
-    </Tooltip>
+      <Icon
+        size={20}
+        stroke={1.5}
+      />
+      <div>{label}</div>
+      {isActive && (
+        <div
+          className={`absolute top-0 w-full h-full -right-1 -z-10 bg-blue-500  ${classess.clip_arrow}`}
+        ></div>
+      )}
+    </NavLink>
   );
 }
 
@@ -54,36 +60,8 @@ export function NavbarMinimal() {
   ));
 
   return (
-    <nav className={classes.navbar}>
-      <Center>
-        {/* <MantineLogo
-          type="mark"
-          size={30}
-        /> */}
-      </Center>
-
-      <div className={classes.navbarMain}>
-        <Stack
-          justify="center"
-          gap={0}
-        >
-          {links}
-        </Stack>
-      </div>
-
-      {/* <Stack
-        justify="center"
-        gap={0}
-      >
-        <NavbarLink
-          icon={IconSwitchHorizontal}
-          label="Change account"
-        />
-        <NavbarLink
-          icon={IconLogout}
-          label="Logout"
-        />
-      </Stack> */}
+    <nav className="bg-blue-950 text-white h-full flex flex-col gap-4 -mr-2">
+      {links}
     </nav>
   );
 }
