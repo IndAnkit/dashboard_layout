@@ -16,21 +16,18 @@ const AppRouter = () => {
       >
         <Route
           index
-          path="/SS22"
+          path="/"
           element={<SS22 />}
         />
         <Route
-          index
           path="/dashboard"
           element={<DashboardScreen />}
         />
         <Route
-          index
           path="/analytics"
           element={<Analytics />}
         />
         <Route
-          index
           path="/releases"
           element={<Releases />}
         />

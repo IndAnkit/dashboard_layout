@@ -42,8 +42,8 @@ function NavbarLink({ icon: Icon, path, label, active, onClick }) {
 }
 
 const mockdata = [
-  { icon: IconHome2, label: "Home", path: "/" },
-  { icon: IconGauge, label: "SS22", path: "/SS22" },
+  { icon: IconHome2, label: "Home" },
+  { icon: IconGauge, label: "SS22", path: "/" },
   { icon: IconDeviceDesktopAnalytics, label: "Analytics", path: "/analytics" },
   { icon: IconCalendarStats, label: "Releases", path: "releases" },
 ];
