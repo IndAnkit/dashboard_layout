@@ -17,19 +17,19 @@ const AppRouter = () => {
         <Route
           index
           path="/"
-          element={<SS22 />}
+          element={<SS22 networkId={22} />}
         />
         <Route
-          path="/dashboard"
-          element={<DashboardScreen />}
+          path="/23"
+          element={<SS22 networkId={23} />}
         />
         <Route
-          path="/analytics"
-          element={<Analytics />}
+          path="/24"
+          element={<SS22 networkId={24} />}
         />
         <Route
-          path="/releases"
-          element={<Releases />}
+          path="/25"
+          element={<SS22 networkId={25} />}
         />
       </Route>
     </Routes>

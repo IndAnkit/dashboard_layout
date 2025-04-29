@@ -12,7 +12,7 @@ const SS22 = ({ networkId = 22 }) => {
           tabs={{
             building: {
               id: "building",
-              label: `Building – ${23}`,
+              label: `Building – ${networkId}`,
               RenderComponent: Building, // replace with actual component
             },
             floor: {
